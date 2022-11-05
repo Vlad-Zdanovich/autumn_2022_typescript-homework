@@ -1,3 +1,9 @@
+import { ErrorBoundary } from './shared/components/error-boundary'
+
 export function App() {
-  return <div>Hello!</div>
+  return (
+    <ErrorBoundary>
+      <div>Hello!</div>
+    </ErrorBoundary>
+  )
 }
