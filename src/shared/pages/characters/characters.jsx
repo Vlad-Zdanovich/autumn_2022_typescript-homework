@@ -1,11 +1,15 @@
-import { useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useStore, charactersReducerActions } from '../../store'
 import { useCharacters } from '../../api/hooks'
 import { CharactersList } from '../../components/characters-list'
+import { useCharactersFilter } from './hooks'
+
 import styles from './characters.module.scss'
 
 export const Characters = () => {
+  const [charactersFilter, setCharactersFilter] = useState('')
+
   const { state, dispatch } = useStore()
   const { data } = useCharacters()
 
@@ -18,17 +22,29 @@ export const Characters = () => {
     })
   }, [data, dispatch])
 
-  const characters = useMemo(() => {
-    return Object.values(state.characters)
-  }, [state.characters])
+  const characters = useMemo(
+    () => Object.values(state.characters),
+    [state.characters],
+  )
+
+  const onChangeHandler = useCallback(({ target }) => {
+    setCharactersFilter(target.value)
+  }, [])
+
+  const filteredCharacters = useCharactersFilter(characters, charactersFilter)
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.header}>Rick and Morty characters</div>
-      <CharactersList
-        characters={characters}
-        className={styles.characterList}
-      />
+      <header>
+        <h1 className={styles.header}>Rick and Morty characters</h1>
+        <input onChange={onChangeHandler} value={charactersFilter} />
+      </header>
+      <main>
+        <CharactersList
+          characters={filteredCharacters}
+          className={styles.characterList}
+        />
+      </main>
     </div>
   )
 }

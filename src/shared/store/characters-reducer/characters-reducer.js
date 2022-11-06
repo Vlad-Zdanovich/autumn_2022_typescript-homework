@@ -10,7 +10,9 @@ export const charactersReducer = (state, action) => {
       const { characters } = action.payload
 
       return characters.reduce((acc, character) => {
-        return (acc[character.id] = character)
+        acc[character.id] = character
+
+        return acc
       }, {})
     default:
       return state
