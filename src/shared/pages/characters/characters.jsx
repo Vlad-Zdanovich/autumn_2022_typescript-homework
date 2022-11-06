@@ -35,9 +35,14 @@ export const Characters = () => {
 
   return (
     <div className={styles.wrapper}>
-      <header>
-        <h1 className={styles.header}>Rick and Morty characters</h1>
-        <input onChange={onChangeHandler} value={charactersFilter} />
+      <header className={styles.header}>
+        <h1 className={styles.title}>Rick and Morty characters</h1>
+        <input
+          onChange={onChangeHandler}
+          value={charactersFilter}
+          className={styles.filter}
+          placeholder="Enter the character name"
+        />
       </header>
       <main>
         <CharactersList
