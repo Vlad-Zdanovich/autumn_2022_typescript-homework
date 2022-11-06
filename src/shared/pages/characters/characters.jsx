@@ -1,17 +1,22 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-
 import { useStore, charactersReducerActions } from '../../store'
 import { useCharacters } from '../../api/hooks'
 import { CharactersList } from '../../components/characters-list'
 import { useCharactersFilter } from './hooks'
-
+import { useGlobalLoading } from '../../providers/global-loading-provider'
 import styles from './characters.module.scss'
 
 export const Characters = () => {
   const [charactersFilter, setCharactersFilter] = useState('')
 
   const { state, dispatch } = useStore()
-  const { data } = useCharacters()
+  const { data, loading } = useCharacters()
+
+  const { setGlobalLoading } = useGlobalLoading()
+
+  useEffect(() => {
+    setGlobalLoading(loading)
+  }, [loading, setGlobalLoading])
 
   useEffect(() => {
     dispatch({
