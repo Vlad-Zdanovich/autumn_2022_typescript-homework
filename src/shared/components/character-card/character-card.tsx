@@ -1,9 +1,20 @@
 import classnames from 'classnames'
 
 import styles from './character-card.module.scss'
+import { CharacterGender, CharacterStatus } from '../../models/character'
 
 const deadCharacterStatus = 'Dead'
 const unknownCharacterStatus = 'unknown'
+
+type CharacterCardProps = {
+  imgUrl: string
+  name: string
+  status: CharacterStatus
+  species: string
+  gender: CharacterGender
+  onClick?: () => void
+  disabled?: boolean
+}
 
 export const CharacterCard = ({
   imgUrl,
@@ -13,7 +24,7 @@ export const CharacterCard = ({
   gender,
   onClick,
   disabled = false,
-}) => {
+}: CharacterCardProps) => {
   return (
     <div
       className={classnames(styles.card, { [styles.disabled]: disabled })}

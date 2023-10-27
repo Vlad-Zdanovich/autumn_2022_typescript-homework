@@ -1,3 +1,5 @@
+import { Character } from "../../models/character"
+
 const SET_CHARACTERS = 'SET_CHARACTERS'
 
 export const charactersReducerActions = {

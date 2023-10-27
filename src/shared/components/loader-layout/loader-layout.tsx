@@ -3,8 +3,13 @@ import classnames from 'classnames'
 import { Loader } from '../loader'
 import styles from './loader-layout.module.scss'
 import { useGlobalLoading } from '../../providers/global-loading-provider'
+import { ReactNode } from 'react'
 
-export const LoaderLayout = ({ children }) => {
+type LoaderLayoutProps = {
+  children: ReactNode
+}
+
+export const LoaderLayout = ({ children }: LoaderLayoutProps) => {
   const { isLoading } = useGlobalLoading()
 
   return (
