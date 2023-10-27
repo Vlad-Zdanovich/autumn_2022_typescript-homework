@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { Character } from '../../../../models/character'
+import { CharacterResponse } from '../../../../models/character'
 
-export const useCharactersFilter = (characters: [Character], filterText: string) => {
+export const useCharactersFilter = (characters: CharacterResponse[], filterText: string): CharacterResponse[] => {
   return useMemo(() => {
     if (!filterText) {
       return characters
