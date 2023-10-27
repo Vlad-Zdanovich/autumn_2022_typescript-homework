@@ -1,4 +1,2 @@
-export {
-  charactersReducer,
-  charactersReducerActions,
-} from './characters-reducer'
+export { charactersReducer } from './characters-reducer'
+export type { ComposedCharacterAction } from "./characters-reducer"

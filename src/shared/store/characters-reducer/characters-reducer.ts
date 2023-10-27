@@ -1,17 +1,25 @@
-import { Character } from "../../models/character"
+import { CharacterResponse } from "../../models/character"
+import { CharacterStore } from "../store/characters-store"
 
-const SET_CHARACTERS = 'SET_CHARACTERS'
+type CharacterActionType = "SET_CHARACTERS"
 
-export const charactersReducerActions = {
-  setCharacters: SET_CHARACTERS,
+type CharacterAction<Type extends CharacterActionType, Payload> = {
+  type: Type
+  payload: Payload
 }
 
-export const charactersReducer = (state, action) => {
+type SetCharactersAction = CharacterAction<"SET_CHARACTERS", {
+  characters: CharacterResponse[]
+}>
+
+export type ComposedCharacterAction = SetCharactersAction
+
+export const charactersReducer = (state: CharacterStore, action: ComposedCharacterAction): CharacterStore => {
   switch (action.type) {
-    case charactersReducerActions.setCharacters:
+    case "SET_CHARACTERS":
       const { characters } = action.payload
 
-      return characters.reduce((acc, character) => {
+      return characters.reduce((acc: CharacterStore, character: CharacterResponse): CharacterStore => {
         acc[character.id] = character
 
         return acc
