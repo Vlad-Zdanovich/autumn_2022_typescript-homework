@@ -16,8 +16,8 @@ export type GlobalLoadingContextValueType = {
 export const GlobalLoadingContext =
   createContext<GlobalLoadingContextValueType>({
     loaders: {},
-    setGlobalLoading: ({ key, isLoading }: LoaderModel) => {},
-    removeGlobalLoading: (key: string) => {},
+    setGlobalLoading: () => {},
+    removeGlobalLoading: () => {},
   })
 
 type GlobalLoadingProviderProps = {

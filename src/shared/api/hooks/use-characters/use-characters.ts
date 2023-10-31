@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import { CharacterResponse, CharactersResponse } from '../../../models/character'
 import { getCharacters } from '../../get-characters'
 
-type UseCharactersReturnType = {
+type UseCharacters = () => {
   data: CharacterResponse[]
   error: string | null
   loading: boolean
 }
 
-export const useCharacters = (): UseCharactersReturnType => {
+export const useCharacters: UseCharacters = () => {
   const [characters, setCharacters] = useState<CharacterResponse[]>([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -17,7 +17,7 @@ export const useCharacters = (): UseCharactersReturnType => {
     setLoading(true)
 
     getCharacters()
-      .then((characters: CharactersResponse) => {
+      .then((characters) => {
         setCharacters(characters.results)
       })
       .catch(setError)

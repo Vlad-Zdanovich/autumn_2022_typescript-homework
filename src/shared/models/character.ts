@@ -1,3 +1,7 @@
+
+export type CharacterGender =  "Female" | "Male" | "Genderless" | "unknown"
+export type CharacterStatus =  "Alive" | "Dead" | "unknown"
+
 export type CharactersResponse = {
     info: CharactersInfoResponse,
     results: CharacterResponse[]
@@ -30,6 +34,3 @@ export type CharacterResponse = {
     url: string,
     created: string
 }
-
-export type CharacterStatus =  "Alive" | "Dead" | "unknown"
-export type CharacterGender =  "Female" | "Male" | "Genderless" | "unknown"

@@ -5,11 +5,8 @@ import { useGlobalLoadingContext } from './use-global-loading-context'
 
 export const useGlobalLoading = () => {
   const uuidv4 = useRef(v4())
-  const {
-    loaders,
-    setGlobalLoading,
-    removeGlobalLoading,
-  }: GlobalLoadingContextValueType = useGlobalLoadingContext()
+  const { loaders, setGlobalLoading, removeGlobalLoading } =
+    useGlobalLoadingContext()
 
   useEffect(() => {
     const uuid = uuidv4.current

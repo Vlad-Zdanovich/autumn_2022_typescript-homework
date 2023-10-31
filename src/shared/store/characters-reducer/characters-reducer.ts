@@ -19,7 +19,7 @@ export const charactersReducer = (state: CharacterStore, action: ComposedCharact
     case "SET_CHARACTERS":
       const { characters } = action.payload
 
-      return characters.reduce((acc: CharacterStore, character: CharacterResponse): CharacterStore => {
+      return characters.reduce<CharacterStore>((acc, character) => {
         acc[character.id] = character
 
         return acc
