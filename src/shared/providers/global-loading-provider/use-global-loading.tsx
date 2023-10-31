@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { v4 } from 'uuid'
+import { GlobalLoadingContextValueType } from './global-loading-provider'
 import { useGlobalLoadingContext } from './use-global-loading-context'
 
 export const useGlobalLoading = () => {
@@ -16,7 +17,8 @@ export const useGlobalLoading = () => {
   }, [removeGlobalLoading])
 
   const setGlobalLoadingCallback = useCallback(
-    (state) => setGlobalLoading({ key: uuidv4.current, isLoading: state }),
+    (state: boolean) =>
+      setGlobalLoading({ key: uuidv4.current, isLoading: state }),
     [setGlobalLoading],
   )
 

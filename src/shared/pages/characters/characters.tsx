@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useStore, charactersReducerActions } from '../../store'
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react'
+import { useStore } from '../../store'
 import { useCharacters } from '../../api/hooks'
 import { CharactersList } from '../../components/characters-list'
 import { useCharactersFilter } from './hooks'
@@ -20,7 +20,7 @@ export const Characters = () => {
 
   useEffect(() => {
     dispatch({
-      type: charactersReducerActions.setCharacters,
+      type: 'SET_CHARACTERS',
       payload: {
         characters: data,
       },
@@ -32,9 +32,12 @@ export const Characters = () => {
     [state.characters],
   )
 
-  const onChangeHandler = useCallback(({ target }) => {
-    setCharactersFilter(target.value)
-  }, [])
+  const onChangeHandler = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setCharactersFilter(event.target.value)
+    },
+    [],
+  )
 
   const filteredCharacters = useCharactersFilter(characters, charactersFilter)
 
